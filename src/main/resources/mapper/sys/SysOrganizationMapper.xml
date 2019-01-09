@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.smart.sys.mapper.SysOrganizationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.atom.smart.sys.entity.SysOrganization">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="parent_code" property="parentCode" />
+        <result column="config_type" property="configType" />
+        <result column="status" property="status" />
+        <result column="sort_no" property="sortNo" />
+        <result column="address" property="address" />
+        <result column="tel" property="tel" />
+        <result column="email" property="email" />
+        <result column="manager" property="manager" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, parent_code, config_type, status, sort_no, address, tel, email, manager
+    </sql>
+
+</mapper>

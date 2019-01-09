@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.smart.sys.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.atom.smart.sys.entity.SysUser">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="is_lock" property="isLock" />
+        <result column="is_enable" property="isEnable" />
+        <result column="user_expire" property="userExpire" />
+        <result column="pwd_expire" property="pwdExpire" />
+        <result column="remark" property="remark" />
+        <result column="sort_no" property="sortNo" />
+        <result column="tel_no" property="telNo" />
+        <result column="create_user" property="createUser" />
+        <result column="create_item" property="createItem" />
+        <result column="org_code" property="orgCode" />
+    </resultMap>
+
+    <resultMap id="UserWithPermissionResultMap" type="com.atom.smart.sys.entity.SysUser" extends="BaseResultMap">
+        <collection property="sysAllRoles" column="code" ofType="com.atom.smart.sys.mapper.SysRoleMapper" select="com.atom.smart.sys.mapper.SysRoleMapper.selectRolesByUserCode">
+        </collection>
+        <collection property="sysAllFunctions" column="code" ofType="com.atom.smart.sys.mapper.SysFunctionMapper" select="com.atom.smart.sys.mapper.SysFunctionMapper.selectFunctionsByUserCode">
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, password, is_lock, is_enable, user_expire, pwd_expire, remark, sort_no, tel_no, create_user, create_item, org_code
+    </sql>
+
+    <select  id="selectUserWithPermissionByCode" resultMap="UserWithPermissionResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"></include>
+        from sp_sys_user
+        where sp_sys_user.code =#{code}
+    </select>
+
+</mapper>

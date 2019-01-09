@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.smart.sys.mapper.SysLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.atom.smart.sys.entity.SysLog">
+        <id column="id" property="id" />
+        <result column="user" property="user" />
+        <result column="operation" property="operation" />
+        <result column="invoke_method" property="invokeMethod" />
+        <result column="params" property="params" />
+        <result column="create_time" property="createTime" />
+        <result column="ip_address" property="ipAddress" />
+        <result column="log_time" property="logTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user, operation, invoke_method, params, create_time, ip_address, log_time
+    </sql>
+
+</mapper>

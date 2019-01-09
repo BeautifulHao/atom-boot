@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.smart.sys.mapper.SysFunctionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.atom.smart.sys.entity.SysFunction">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="parent_code" property="parentCode" />
+        <result column="name" property="name" />
+        <result column="config_type" property="configType" />
+        <result column="url" property="url" />
+        <result column="permissions" property="permissions" />
+        <result column="status" property="status" />
+        <result column="sort_no" property="sortNo" />
+        <result column="module_code" property="moduleCode" />
+        <result column="icon" property="icon" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, parent_code, name, config_type, url, permissions, status, sort_no, module_code, icon, remark
+    </sql>
+
+    <select id="selectFunctionsByUserCode" resultMap="BaseResultMap" parameterType="string">
+        SELECT sp_sys_function.*
+        FROM sp_sys_user LEFT JOIN sp_user_role ON sp_sys_user.`code`=sp_user_role.`user_code`
+                         LEFT JOIN sp_sys_role ON sp_sys_role.`code` = sp_user_role.`role_code`
+                         LEFT JOIN sp_role_function ON sp_role_function.`role_code` = sp_sys_role.`code`
+                         LEFT JOIN sp_sys_function ON sp_role_function.`function_code`= sp_sys_function.`code`
+        WHERE sp_sys_user.`code`=#{userCode}
+        UNION
+        SELECT sp_sys_function.*
+        FROM sp_sys_user LEFT JOIN sp_user_function ON sp_sys_user.`code`=sp_user_function.`user_code`
+                         LEFT JOIN sp_sys_function ON sp_user_function.`function_code`= sp_sys_function.`code`
+        WHERE sp_sys_user.`code`=#{userCode}
+    </select>
+
+</mapper>

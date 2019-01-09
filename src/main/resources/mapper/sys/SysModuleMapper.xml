@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.smart.sys.mapper.SysModuleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.atom.smart.sys.entity.SysModule">
+        <id column="id" property="id" />
+        <result column="module_code" property="moduleCode" />
+        <result column="module_name" property="moduleName" />
+        <result column="is_system" property="isSystem" />
+        <result column="icon" property="icon" />
+        <result column="sort_no" property="sortNo" />
+        <result column="create_date" property="createDate" />
+        <result column="series_code" property="seriesCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, module_code, module_name, is_system, icon, sort_no, create_date, series_code
+    </sql>
+
+</mapper>
