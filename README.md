@@ -36,7 +36,7 @@ sp_sys_log
 
 id\user\operation\method\params\create_time\ip_address\timestamp
 
-## 想法
+## Some想法
 
 token认证 授权上下文可以在jwt内只记录权限键，值可以缓存redis，避免大量数据库访问
 
